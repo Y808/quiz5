@@ -4,10 +4,9 @@ import configs
 
 
 class LoginPage(BasePage):
-    EMAIL_FIELD = (By.NAME, "email")
-    PASSWORD_FIELD = (By.NAME, "password")
-    LOGIN_BUTTON = (By.CSS_SELECTOR, "button[type=submit]")
-    LOGIN_URL = configs.base_url + '/en/login'
+    EMAIL_FIELD = (By.XPATH, "//input[@placeholder = 'Email']")
+    PASSWORD_FIELD = (By.XPATH, "//input[@placeholder = 'Password']")
+    LOGIN_BUTTON = (By.XPATH, "//button[@type = 'submit']")
 
     def open_login_page(self):
         self.driver.get(self.LOGIN_URL)

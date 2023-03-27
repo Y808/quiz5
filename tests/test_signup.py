@@ -2,6 +2,7 @@ from os import wait
 
 import pytest
 import configs
+from pages.home_page import HomePage
 from pages.signup_page import SignupPage
 import time
 
@@ -54,12 +55,14 @@ def test_blank_password(init_driver, read_login_users):
 
 def test_successful_signup(init_driver, read_login_users):
     signup_page = SignupPage(init_driver)
+    home_page = HomePage(init_driver)
     signup_page.open_signup_page()
+
 
     username = read_login_users["correctUserNameEmailPasswordForSignup"]["username"]
     email = read_login_users["correctUserNameEmailPasswordForSignup"]["email"]
     password = read_login_users["correctUserNameEmailPasswordForSignup"]["password"]
     signup_page.signup(username, email, password)
-    time.sleep(4)
-    #assert that homepage is opened
+
+    assert read_login_users["correctUserNameEmailPasswordForSignup"]["username"] == home_page.get_workspace_text()
 
