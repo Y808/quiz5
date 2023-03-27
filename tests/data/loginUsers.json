@@ -1,0 +1,13 @@
+{
+  "takenUserName": {
+    "username": "Anna",
+    "email": "hidav71828@asoflex.com",
+    "password": "12345678"
+  },
+
+  "correctUserNameEmailPasswordForSignup": {
+    "username": "Anna12",
+    "email": "hidav70828+2@asoflex.com",
+    "password": "12345678"
+  }
+}

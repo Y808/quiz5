@@ -29,3 +29,7 @@ class BasePage:
 
     def get_title(self):
         return self.driver.title
+
+    def get_text(self, locator):
+        element = self.wait.until(EC.visibility_of_element_located(locator))
+        return element.text
