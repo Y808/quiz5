@@ -3,7 +3,13 @@
     <!-- Signup page -->
     <string name="taken_username">username has already been taken</string>
     <string name="blank_username">username can't be blank</string>
+    <string name="blank_email">email can't be blank</string>
     <string name="blank_password">password can't be blank</string>
+
+    <!-- Login page -->
+    <string name="login_blank_email">email can't be blank</string>
+    <string name="login_blank_password">password can't be blank</string>
+    <string name="js_email_error">Please include an '@' in the email address</string>
 
 
 

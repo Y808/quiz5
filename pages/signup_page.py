@@ -9,6 +9,7 @@ class SignupPage(BasePage):
     PASSWORD_FIELD = (By.XPATH, "//input[@placeholder = 'Password']")
     SUBMIT_BUTTON = (By.XPATH, "//button[@type = 'submit']")
     USERNAME_ERROR =(By.XPATH, "//li[contains(text(),'username')]")
+    EMAIL_ERROR = (By.XPATH, "//li[contains(text(),'email')]")
     PASSWORD_ERROR = (By.XPATH, "//li[contains(text(),'password')]")
     SIGNUP_URL = configs.base_url + "#/register?_k=efbs31"
 
@@ -29,3 +30,7 @@ class SignupPage(BasePage):
     def get_password_error_text(self):
         print(self.get_text(self.PASSWORD_ERROR))
         return self.get_text(self.PASSWORD_ERROR)
+
+    def get_email_error_text(self):
+        print(self.get_text(self.EMAIL_ERROR))
+        return self.get_text(self.EMAIL_ERROR)
