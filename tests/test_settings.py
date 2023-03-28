@@ -1,9 +1,6 @@
 import time
-
-import pytest
 from pages.login_page import LoginPage
 from pages.home_page import HomePage
-import configs
 from pages.settings_page import SettingsPage
 from tests.conftest import read_strings_xml, read_login_users
 
@@ -25,6 +22,10 @@ def test_change_password_and_bio(init_driver, read_login_users):
     assert read_login_users["validUser1"]["username"] == home_page.get_workspace_text()
     assert home_page.get_your_feed_tab().is_enabled()
 
+
+"""
+ER for second test in doc "nothing will change", so i just created test to change password back
+"""
 def test_change_password_back(init_driver, read_login_users):
     login_page = LoginPage(init_driver)
     settings_page = SettingsPage(init_driver)

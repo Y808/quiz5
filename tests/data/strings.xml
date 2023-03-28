@@ -11,6 +11,10 @@
     <string name="login_blank_password">password can't be blank</string>
     <string name="js_email_error">Please include an '@' in the email address</string>
 
+    <!-- Create article page -->
+    <string name="blank_article_title">title can't be blank</string>
+    <string name="blank_article_description">description can't be blank</string>
+    <string name="blank_article_body">body can't be blank</string>
 
 
 </resources>
