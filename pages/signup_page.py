@@ -8,11 +8,10 @@ class SignupPage(BasePage):
     EMAIL_FIELD = (By.XPATH, "//input[@placeholder = 'Email']")
     PASSWORD_FIELD = (By.XPATH, "//input[@placeholder = 'Password']")
     SUBMIT_BUTTON = (By.XPATH, "//button[@type = 'submit']")
-    USERNAME_ERROR =(By.XPATH, "//li[contains(text(),'username')]")
+    USERNAME_ERROR = (By.XPATH, "//li[contains(text(),'username')]")
     EMAIL_ERROR = (By.XPATH, "//li[contains(text(),'email')]")
     PASSWORD_ERROR = (By.XPATH, "//li[contains(text(),'password')]")
     SIGNUP_URL = configs.base_url + "#/register?_k=efbs31"
-
 
     def open_signup_page(self):
         self.driver.get(self.SIGNUP_URL)
