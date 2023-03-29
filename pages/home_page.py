@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 
 class HomePage(BasePage):
     WORKSPACE_NAME = (By.XPATH, "//li[@class='nav-item'][4]/a")
+    SETTINGS_NAV_ITEM = (By.XPATH, "//a[contains(text(),'Settings')]")
     YOUR_FEED_TAB = (By.XPATH, "//a[contains(text(),'Your Feed')]")
     GLOBAL_FEED_TAB = (By.XPATH, "//a[contains(text(),'Global Feed')]")
     LIKES_NUMBER_ON_LAST_ARTICLE = (By.XPATH, "(//button[@class='btn btn-sm btn-outline-primary'])[last()]")
@@ -34,11 +35,16 @@ class HomePage(BasePage):
         print(self.get_text(self.LAST_ARTICLE_TITLE))
         return self.get_text(self.LAST_ARTICLE_TITLE)
 
-    def click_on_heard_icon_on_last_article(self):
+    def click_on_heart_icon_on_last_article(self):
         self.scroll_to_element(self.FAVOURITE_BTN_ON_LAST_ARTICLE)
         self.click(self.FAVOURITE_BTN_ON_LAST_ARTICLE)
         # self.wait_until_class_changes(self.LIKES_NUMBER_ON_LAST_ARTICLE, 'btn btn-sm btn-primary')
 
-    def click_on_heard_icon_on_second_last_article(self):
+    def click_on_heart_icon_on_second_last_article(self):
         self.scroll_to_element(self.FAVOURITE_BTN_ON_SECOND_LAST_ARTICLE)
         self.click(self.FAVOURITE_BTN_ON_SECOND_LAST_ARTICLE)
+
+    def open_settings_page(self):
+        self.wait_until_page_is_loaded()
+        self.click(self.SETTINGS_NAV_ITEM)
+
