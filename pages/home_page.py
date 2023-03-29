@@ -7,9 +7,12 @@ class HomePage(BasePage):
     SETTINGS_NAV_ITEM = (By.XPATH, "//a[contains(text(),'Settings')]")
     YOUR_FEED_TAB = (By.XPATH, "//a[contains(text(),'Your Feed')]")
     GLOBAL_FEED_TAB = (By.XPATH, "//a[contains(text(),'Global Feed')]")
+    POPULAR_TAG = (By.XPATH, "//a[contains(text(),'implementations')]")
+    TAG_NAV_LINK = (By.XPATH, "//a[@class='nav-link active']")
     LIKES_NUMBER_ON_LAST_ARTICLE = (By.XPATH, "(//button[@class='btn btn-sm btn-outline-primary'])[last()]")
     FAVOURITE_BTN_ON_LAST_ARTICLE = (By.XPATH, "(//div[@class='pull-xs-right'])[last()]")
     FAVOURITE_BTN_ON_SECOND_LAST_ARTICLE = (By.XPATH, "(//div[@class='pull-xs-right'])[last()-1]")
+    ARTICLES_ELEMENT = (By.CLASS_NAME, "article-preview")
     LAST_ARTICLE_TITLE = (By.XPATH, "(//a[@class='preview-link']/h1)[last()]")
 
     def get_workspace_text(self):
@@ -47,4 +50,25 @@ class HomePage(BasePage):
     def open_settings_page(self):
         self.wait_until_page_is_loaded()
         self.click(self.SETTINGS_NAV_ITEM)
+
+    def click_on_popular_tag(self):
+        self.click(self.POPULAR_TAG)
+
+    def get_tag_name(self):
+        print(self.get_text(self.POPULAR_TAG))
+        return self.get_text(self.POPULAR_TAG)
+
+    def get_nav_name(self):
+        print(self.get_text(self.TAG_NAV_LINK))
+        return self.get_text(self.TAG_NAV_LINK)
+
+    def all_articles_have_tag(self, tag_name):
+        articles = self.get_elements(self.ARTICLES_ELEMENT)
+        for article in articles:
+            tags = article.find_elements(By.CLASS_NAME, "tag-list")
+            tag_names = [t.text for t in tags[0].find_elements(By.TAG_NAME, "li")]
+            if tag_name not in tag_names:
+                return False
+        return True
+
 

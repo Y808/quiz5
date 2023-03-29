@@ -52,6 +52,9 @@ class BasePage:
         self.wait.until(EC.presence_of_element_located((By.TAG_NAME, 'body')))
         self.wait.until(lambda driver: driver.execute_script('return document.readyState') == 'complete')
 
+    def get_elements(self, locator):
+        return self.wait.until(EC.visibility_of_all_elements_located(locator))
+
     def wait_until_class_changes(self, locator, class_name):
 
         element = self.wait.until(EC.presence_of_element_located(locator))

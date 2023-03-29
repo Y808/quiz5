@@ -1,5 +1,3 @@
-
-
 import pytest
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
@@ -14,6 +12,7 @@ def login_user(init_driver, read_login_users):
     login_page.login(email, password)
     yield email, password
 
+
 def test_navigate_back(init_driver, login_user):
     home_page = HomePage(init_driver)
     home_page.open_settings_page()
@@ -25,4 +24,3 @@ def test_navigate_forward(init_driver, login_user):
     home_page.open_settings_page()
     init_driver.back()
     init_driver.forward()
-
