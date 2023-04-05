@@ -5,13 +5,14 @@ import configs
 
 class SignupPage(BasePage):
     USERNAME_FIELD = (By.XPATH, "//input[@placeholder = 'Username']")
-    EMAIL_FIELD = (By.XPATH, "//input[@placeholder = 'Email']")
-    PASSWORD_FIELD = (By.XPATH, "//input[@placeholder = 'Password']")
+    EMAIL_FIELD = (By.XPATH, "//input[@type = 'email']")
+    PASSWORD_FIELD = (By.XPATH, "//input[@type = 'password']")
     SUBMIT_BUTTON = (By.XPATH, "//button[@type = 'submit']")
     USERNAME_ERROR = (By.XPATH, "//li[contains(text(),'username')]")
     EMAIL_ERROR = (By.XPATH, "//li[contains(text(),'email')]")
     PASSWORD_ERROR = (By.XPATH, "//li[contains(text(),'password')]")
-    SIGNUP_URL = configs.base_url + "#/register?_k=efbs31"
+    ERROR_MESSAGE = (By.CSS_SELECTOR, "ul.error-messages>li") # it can be used for all errors
+    SIGNUP_URL = configs.base_url + "#/register"
 
     def open_signup_page(self):
         self.driver.get(self.SIGNUP_URL)

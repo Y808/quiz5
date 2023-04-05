@@ -30,7 +30,7 @@ def test_click_on_tag(init_driver, login_user):
 
     assert tag_name == nav_link_name
     time.sleep(2)
-    assert home_page.all_articles_have_tag("implementations")
+    assert home_page.all_articles_have_tag("implementations"), "There is an article with different tag rather than 'implementations'"
 
 
 
