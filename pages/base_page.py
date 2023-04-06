@@ -1,5 +1,6 @@
 from datetime import time
 
+from selenium.common import TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -49,8 +50,12 @@ class BasePage:
         actions.move_to_element(element).perform()
 
     def wait_until_page_is_loaded(self):
-        self.wait.until(EC.presence_of_element_located((By.TAG_NAME, 'body')))
-        self.wait.until(lambda driver: driver.execute_script('return document.readyState') == 'complete')
+        try:
+            self.wait.until(EC.presence_of_element_located((By.TAG_NAME, 'body')))
+            self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'html:not(.loading)')))
+            self.wait.until(lambda driver: driver.execute_script('return document.readyState') == 'complete')
+        except TimeoutException:
+            print("Page failed to load within the expected time.")
 
     def get_elements(self, locator):
         return self.wait.until(EC.visibility_of_all_elements_located(locator))

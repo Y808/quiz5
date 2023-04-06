@@ -1,3 +1,5 @@
+from telnetlib import EC
+
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 import configs
@@ -11,8 +13,10 @@ class LoginPage(BasePage):
     PASSWORD_ERROR = (By.XPATH, "//li[contains(text(),'password')]")
     LOGIN_URL = configs.base_url + "#/login"
 
+
     def open_login_page(self):
         self.driver.get(self.LOGIN_URL)
+        self.wait_until_page_is_loaded()
 
     def login(self, email, password):
         self.fill_input(self.EMAIL_FIELD, email)

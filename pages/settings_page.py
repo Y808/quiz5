@@ -9,13 +9,26 @@ class SettingsPage(BasePage):
     EMAIL_FIELD = (By.XPATH, "//input[@type = 'email']")
     PASSWORD_FIELD = (By.XPATH, "//input[@type = 'password']")
     SUBMIT_BUTTON = (By.XPATH, "//button[@type = 'submit']")
+    LOGOUT_BUTTON = (By.XPATH, "//button[@class='btn btn-outline-danger']")
     SETTINGS_URL = configs.base_url + "#/settings"
 
     def open_settings_page(self):
         self.driver.get(self.SETTINGS_URL)
+        self.wait_until_page_is_loaded()
 
-    def change_password_and_bio(self, password, bio):
+    def change_password(self, password):
         self.fill_input(self.PASSWORD_FIELD, password)
-        self.fill_input(self.BIO_FIELD, bio)
         self.click(self.SUBMIT_BUTTON)
 
+    def change_bio(self, bio):
+        self.fill_input(self.BIO_FIELD, bio)
+        self.scroll_to_element(self.SUBMIT_BUTTON)
+        self.click(self.SUBMIT_BUTTON)
+
+    def get_bio_text(self):
+        print(self.get_text(self.BIO_FIELD))
+        return self.get_text(self.BIO_FIELD)
+
+    def logout(self):
+        self.scroll_to_element(self.LOGOUT_BUTTON)
+        self.click(self.LOGOUT_BUTTON)

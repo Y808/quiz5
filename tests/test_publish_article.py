@@ -1,12 +1,10 @@
 import datetime
 import time
-
 import pytest
-
 from pages.article_page import ArticlePage
 from pages.create_article_page import NewArticlePage
 from pages.login_page import LoginPage
-from tests.conftest import read_strings_xml
+from tests.data import login_users, strings
 
 
 @pytest.fixture(scope="function")
@@ -30,7 +28,7 @@ def test_publish_blank_title_article(init_driver, login_user):
     tags = ""
 
     new_article_page.create_new_article(title, about, body, tags)
-    assert new_article_page.get_title_error_text() == read_strings_xml()['blank_article_title']
+    assert new_article_page.get_title_error_text() == strings.blank_article_title
 
 
 def test_publish_blank_about_article(init_driver, login_user):
@@ -43,7 +41,7 @@ def test_publish_blank_about_article(init_driver, login_user):
     body = "This is a test article body."
 
     new_article_page.create_new_article(title, about, body)
-    assert new_article_page.get_about_error_text() == read_strings_xml()['blank_article_description']
+    assert new_article_page.get_about_error_text() == strings.blank_article_description
 
 
 def test_publish_article_with_empty_body(init_driver, login_user):
@@ -56,7 +54,7 @@ def test_publish_article_with_empty_body(init_driver, login_user):
     body = ""
 
     new_article_page.create_new_article(title, about, body)
-    assert new_article_page.get_body_error_text() == read_strings_xml()['blank_article_body']
+    assert new_article_page.get_body_error_text() == strings.blank_article_body
 
 
 def test_publish_article(init_driver, login_user):

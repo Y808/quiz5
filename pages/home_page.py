@@ -1,3 +1,4 @@
+import configs
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 
@@ -14,6 +15,11 @@ class HomePage(BasePage):
     FAVOURITE_BTN_ON_SECOND_LAST_ARTICLE = (By.XPATH, "(//div[@class='pull-xs-right'])[last()-1]")
     ARTICLES_ELEMENT = (By.CLASS_NAME, "article-preview")
     LAST_ARTICLE_TITLE = (By.XPATH, "(//a[@class='preview-link']/h1)[last()]")
+    HOME_URL = configs.base_url
+
+    def open_home_page(self):
+        self.driver.get(self.HOME_URL)
+        self.wait_until_page_is_loaded()
 
     def get_workspace_text(self):
         print(self.get_text(self.WORKSPACE_NAME))
