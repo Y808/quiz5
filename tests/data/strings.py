@@ -13,3 +13,6 @@ js_email_error = "Please include an '@' in the email address"
 blank_article_title = "title can't be blank"
 blank_article_description = "description can't be blank"
 blank_article_body = "body can't be blank"
+
+# Settings page
+settings_header = "Your Settings"

@@ -4,6 +4,7 @@ import configs
 
 
 class SettingsPage(BasePage):
+    HEADER = (By.XPATH, "//h1")
     USERNAME_FIELD = (By.XPATH, "//input[@placeholder='Username']")
     BIO_FIELD = (By.XPATH, "//textarea")
     EMAIL_FIELD = (By.XPATH, "//input[@type = 'email']")
@@ -28,6 +29,10 @@ class SettingsPage(BasePage):
     def get_bio_text(self):
         print(self.get_text(self.BIO_FIELD))
         return self.get_text(self.BIO_FIELD)
+
+    def get_header_text(self):
+        print(self.get_text(self.HEADER))
+        return self.get_text(self.HEADER)
 
     def logout(self):
         self.scroll_to_element(self.LOGOUT_BUTTON)
