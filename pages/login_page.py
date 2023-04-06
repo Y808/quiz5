@@ -4,12 +4,12 @@ import configs
 
 
 class LoginPage(BasePage):
-    EMAIL_FIELD = (By.XPATH, "//input[@placeholder = 'Email']")
-    PASSWORD_FIELD = (By.XPATH, "//input[@placeholder = 'Password']")
+    EMAIL_FIELD = (By.XPATH, "//input[@type = 'email']")
+    PASSWORD_FIELD = (By.XPATH, "//input[@type = 'password']")
     LOGIN_BUTTON = (By.XPATH, "//button[@type = 'submit']")
     EMAIL_ERROR = (By.XPATH, "//li[contains(text(),'email')]")
     PASSWORD_ERROR = (By.XPATH, "//li[contains(text(),'password')]")
-    LOGIN_URL = configs.base_url + "#/login?_k=q2lpyq"
+    LOGIN_URL = configs.base_url + "#/login"
 
     def open_login_page(self):
         self.driver.get(self.LOGIN_URL)

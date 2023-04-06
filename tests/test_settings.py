@@ -26,6 +26,8 @@ def test_change_password_and_bio(init_driver, read_login_users):
 """
 ER for second test in doc "nothing will change", so i just created test to change password back
 """
+
+
 def test_change_password_back(init_driver, read_login_users):
     login_page = LoginPage(init_driver)
     settings_page = SettingsPage(init_driver)

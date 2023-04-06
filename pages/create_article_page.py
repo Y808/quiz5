@@ -13,7 +13,7 @@ class NewArticlePage(BasePage):
     TITLE_ERROR = (By.XPATH, "//li[contains(text(),'title')]")
     DESCRIPTION_ERROR = (By.XPATH, "//li[contains(text(),'description')]")
     BODY_ERROR = (By.XPATH, "//li[contains(text(),'body')]")
-    NEW_ARTICLE_URL = configs.base_url + "#/editor?_k=ai5mbs"
+    NEW_ARTICLE_URL = configs.base_url + "#/editor"
 
     def open_new_article_page(self):
         self.driver.get(self.NEW_ARTICLE_URL)

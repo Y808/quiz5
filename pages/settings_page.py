@@ -9,7 +9,7 @@ class SettingsPage(BasePage):
     EMAIL_FIELD = (By.XPATH, "//input[@type = 'email']")
     PASSWORD_FIELD = (By.XPATH, "//input[@type = 'password']")
     SUBMIT_BUTTON = (By.XPATH, "//button[@type = 'submit']")
-    SETTINGS_URL = configs.base_url + "#/settings?_k=ig689z"
+    SETTINGS_URL = configs.base_url + "#/settings"
 
     def open_settings_page(self):
         self.driver.get(self.SETTINGS_URL)

@@ -7,9 +7,7 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.chrome import ChromeType
-from pathlib import Path
-import os
-
+import xml.etree.ElementTree as ET
 
 
 @pytest.fixture
@@ -50,6 +48,28 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope="session")
 def read_login_users():
-    with open(str(Path(os.path.abspath(__file__)).parent) + "/data/loginUsers.json") as f:
+    with open("data/loginUsers.json") as f:
         login_users = json.load(f)
     return login_users
+
+
+def read_strings_xml():
+    """
+    Reads the strings.xml file and returns a dictionary of the string values.
+    """
+    strings_dict = {}
+
+    # Parse the XML file
+    tree = ET.parse('data/strings.xml')
+    root = tree.getroot()
+
+    # Find all string elements
+    for string_element in root.findall('.//string'):
+        # Get the name and value of the string
+        string_name = string_element.attrib['name']
+        string_value = string_element.text
+
+        # Add the string to the dictionary
+        strings_dict[string_name] = string_value
+
+    return strings_dict
