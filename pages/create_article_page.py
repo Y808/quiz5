@@ -17,6 +17,7 @@ class NewArticlePage(BasePage):
 
     def open_new_article_page(self):
         self.driver.get(self.NEW_ARTICLE_URL)
+        self.wait_until_page_is_loaded()
 
     def create_new_article(self, title=None, about=None, body=None, tags=None):
         if title:
@@ -31,6 +32,7 @@ class NewArticlePage(BasePage):
 
     def get_title_error_text(self):
         print(self.get_text(self.TITLE_ERROR))
+        self.find_element(self.TITLE_ERROR)
         return self.get_text(self.TITLE_ERROR)
 
     def get_about_error_text(self):

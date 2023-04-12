@@ -47,7 +47,7 @@ class HomePage(BasePage):
     def click_on_heart_icon_on_last_article(self):
         self.scroll_to_element(self.FAVOURITE_BTN_ON_LAST_ARTICLE)
         self.click(self.FAVOURITE_BTN_ON_LAST_ARTICLE)
-        # self.wait_until_class_changes(self.LIKES_NUMBER_ON_LAST_ARTICLE, 'btn btn-sm btn-primary')
+
 
     def click_on_heart_icon_on_second_last_article(self):
         self.scroll_to_element(self.FAVOURITE_BTN_ON_SECOND_LAST_ARTICLE)

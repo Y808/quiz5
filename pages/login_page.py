@@ -3,7 +3,7 @@ from telnetlib import EC
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 import configs
-
+from pages.home_page import HomePage
 
 class LoginPage(BasePage):
     EMAIL_FIELD = (By.XPATH, "//input[@type = 'email']")
@@ -22,6 +22,7 @@ class LoginPage(BasePage):
         self.fill_input(self.EMAIL_FIELD, email)
         self.fill_input(self.PASSWORD_FIELD, password)
         self.click(self.LOGIN_BUTTON)
+        self.find_element(HomePage.SETTINGS_NAV_ITEM)
         self.wait_until_page_is_loaded()
 
     def get_email_error_text(self):
