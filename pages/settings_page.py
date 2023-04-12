@@ -1,6 +1,7 @@
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 import configs
+from pages.home_page import HomePage
 
 
 class SettingsPage(BasePage):
@@ -15,11 +16,16 @@ class SettingsPage(BasePage):
 
     def open_settings_page(self):
         self.driver.get(self.SETTINGS_URL)
+        self.find_element(self.SUBMIT_BUTTON)
         self.wait_until_page_is_loaded()
 
     def change_password(self, password):
         self.fill_input(self.PASSWORD_FIELD, password)
+        self.find_element(self.PASSWORD_FIELD)
         self.click(self.SUBMIT_BUTTON)
+        self.find_element(HomePage.SETTINGS_NAV_ITEM)
+        self.wait_until_page_is_loaded()
+
 
     def change_bio(self, bio):
         self.fill_input(self.BIO_FIELD, bio)
