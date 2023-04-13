@@ -8,6 +8,7 @@ class HomePage(BasePage):
     SETTINGS_NAV_ITEM = (By.XPATH, "//a[contains(text(),'Settings')]")
     YOUR_FEED_TAB = (By.XPATH, "//a[contains(text(),'Your Feed')]")
     GLOBAL_FEED_TAB = (By.XPATH, "//a[contains(text(),'Global Feed')]")
+    TAG_TAB = (By.XPATH, "//i[@class='ion-pound']")
     POPULAR_TAG = (By.XPATH, "//a[contains(text(),'implementations')]")
     TAG_NAV_LINK = (By.XPATH, "//a[@class='nav-link active']")
     LIKES_NUMBER_ON_LAST_ARTICLE = (By.XPATH, "(//button[@class='btn btn-sm btn-outline-primary'])[last()]")
@@ -19,6 +20,7 @@ class HomePage(BasePage):
 
     def open_home_page(self):
         self.driver.get(self.HOME_URL)
+        self.find_element(self.GLOBAL_FEED_TAB)
         self.wait_until_page_is_loaded()
 
     def get_workspace_text(self):
@@ -29,8 +31,9 @@ class HomePage(BasePage):
         return self.get_element(self.YOUR_FEED_TAB)
 
     def open_global_feed_tab(self):
-        self.wait_until_page_is_loaded()
+        self.find_element(self.GLOBAL_FEED_TAB)
         self.click(self.GLOBAL_FEED_TAB)
+        self.wait_until_page_is_loaded()
 
     def get_number_of_last_article_likes(self):
         print(self.get_text(self.FAVOURITE_BTN_ON_LAST_ARTICLE))
@@ -59,6 +62,8 @@ class HomePage(BasePage):
 
     def click_on_popular_tag(self):
         self.click(self.POPULAR_TAG)
+        self.wait_until_page_is_loaded()
+        self.find_element(self.TAG_TAB)
 
     def get_tag_name(self):
         print(self.get_text(self.POPULAR_TAG))
@@ -66,6 +71,7 @@ class HomePage(BasePage):
 
     def get_nav_name(self):
         print(self.get_text(self.TAG_NAV_LINK))
+        self.find_element(self.TAG_NAV_LINK)
         return self.get_text(self.TAG_NAV_LINK)
 
     def all_articles_have_tag(self, tag_name):

@@ -21,15 +21,10 @@ def login_user(init_driver, read_login_users):
 def test_click_on_tag(init_driver, login_user):
     home_page = HomePage(init_driver)
     home_page.open_global_feed_tab()
-    time.sleep(2)
     home_page.click_on_popular_tag()
-    time.sleep(2)
     tag_name = home_page.get_tag_name()
     nav_link_name = home_page.get_nav_name()
-    time.sleep(2)
-
     assert tag_name == nav_link_name
-    time.sleep(2)
     assert home_page.all_articles_have_tag("implementations"), "There is an article with different tag rather than 'implementations'"
 
 

@@ -1,4 +1,3 @@
-import time
 from helpers.utils import generate_random_string
 from pages.login_page import LoginPage
 from pages.home_page import HomePage

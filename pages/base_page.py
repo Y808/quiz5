@@ -67,11 +67,4 @@ class BasePage:
         if class_name not in current_classes:
             self.wait.until(EC.element_attribute_to_be(locator, 'class', f'* {class_name} *'))
 
-    def wait_until_element_is_clickable(self, locator):
-        return self.wait.until(
-            EC.element_to_be_clickable(locator)
-        )
 
-    def scroll_to_end(self):
-        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        time.sleep(2)
