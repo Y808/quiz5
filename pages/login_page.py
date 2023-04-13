@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 import configs
 from pages.home_page import HomePage
 
+
 class LoginPage(BasePage):
     EMAIL_FIELD = (By.XPATH, "//input[@type = 'email']")
     PASSWORD_FIELD = (By.XPATH, "//input[@type = 'password']")
@@ -10,7 +11,6 @@ class LoginPage(BasePage):
     EMAIL_ERROR = (By.XPATH, "//li[contains(text(),'email')]")
     PASSWORD_ERROR = (By.XPATH, "//li[contains(text(),'password')]")
     LOGIN_URL = configs.base_url + "#/login"
-
 
     def open_login_page(self):
         self.driver.get(self.LOGIN_URL)

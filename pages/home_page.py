@@ -16,6 +16,8 @@ class HomePage(BasePage):
     FAVOURITE_BTN_ON_SECOND_LAST_ARTICLE = (By.XPATH, "(//div[@class='pull-xs-right'])[last()-1]")
     ARTICLES_ELEMENT = (By.CLASS_NAME, "article-preview")
     LAST_ARTICLE_TITLE = (By.XPATH, "(//a[@class='preview-link']/h1)[last()]")
+    MARKED_HEART = (By.XPATH, "//button[@class= 'btn btn-sm btn-primary']")
+    UNMARKED_HEART = (By.XPATH, "(//button[@class= 'btn btn-sm btn-outline-primary'])[last()-1]")
     HOME_URL = configs.base_url
 
     def open_home_page(self):
@@ -37,23 +39,27 @@ class HomePage(BasePage):
 
     def get_number_of_last_article_likes(self):
         print(self.get_text(self.FAVOURITE_BTN_ON_LAST_ARTICLE))
+        self.scroll_to_element(self.FAVOURITE_BTN_ON_LAST_ARTICLE)
+        self.find_element(self.FAVOURITE_BTN_ON_LAST_ARTICLE)
         return int(self.get_text(self.FAVOURITE_BTN_ON_LAST_ARTICLE))
 
     def get_number_of_second_last_article_likes(self):
         print(self.get_text(self.FAVOURITE_BTN_ON_SECOND_LAST_ARTICLE))
+        self.scroll_to_element(self.FAVOURITE_BTN_ON_SECOND_LAST_ARTICLE)
+        self.find_element(self.FAVOURITE_BTN_ON_SECOND_LAST_ARTICLE)
         return int(self.get_text(self.FAVOURITE_BTN_ON_SECOND_LAST_ARTICLE))
 
     def get_last_article_title(self):
         print(self.get_text(self.LAST_ARTICLE_TITLE))
+        self.find_element(self.LAST_ARTICLE_TITLE)
         return self.get_text(self.LAST_ARTICLE_TITLE)
 
     def click_on_heart_icon_on_last_article(self):
         self.scroll_to_element(self.FAVOURITE_BTN_ON_LAST_ARTICLE)
+        self.find_element(self.FAVOURITE_BTN_ON_LAST_ARTICLE)
         self.click(self.FAVOURITE_BTN_ON_LAST_ARTICLE)
 
-
     def click_on_heart_icon_on_second_last_article(self):
-        self.scroll_to_element(self.FAVOURITE_BTN_ON_SECOND_LAST_ARTICLE)
         self.click(self.FAVOURITE_BTN_ON_SECOND_LAST_ARTICLE)
 
     def open_settings_page(self):
@@ -82,5 +88,3 @@ class HomePage(BasePage):
             if tag_name not in tag_names:
                 return False
         return True
-
-

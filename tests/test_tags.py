@@ -1,9 +1,4 @@
-import time
-
 import pytest
-from selenium.webdriver.common.by import By
-from webdriver_manager.core import driver
-
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
 

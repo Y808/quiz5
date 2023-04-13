@@ -1,7 +1,4 @@
-from datetime import time
-
 from selenium.common import TimeoutException
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -45,9 +42,9 @@ class BasePage:
         )
 
     def scroll_to_element(self, locator):
-        element = self.find_element(locator)
-        actions = ActionChains(self.driver)
-        actions.move_to_element(element).perform()
+        element = self.wait.until(EC.presence_of_element_located(locator))
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+        self.wait.until(EC.visibility_of_element_located(locator))
 
     def wait_until_page_is_loaded(self):
         try:
@@ -60,11 +57,7 @@ class BasePage:
     def get_elements(self, locator):
         return self.wait.until(EC.visibility_of_all_elements_located(locator))
 
-    def wait_until_class_changes(self, locator, class_name):
-
+    def wait_until_class_changes(self, locator):
         element = self.wait.until(EC.presence_of_element_located(locator))
-        current_classes = element.get_attribute('class').split()
-        if class_name not in current_classes:
-            self.wait.until(EC.element_attribute_to_be(locator, 'class', f'* {class_name} *'))
-
-
+        initial_classes = element.get_attribute('class').split()
+        self.wait.until(lambda driver: element.get_attribute('class').split() != initial_classes)

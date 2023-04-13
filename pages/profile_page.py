@@ -1,5 +1,3 @@
-import time
-
 import configs
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
@@ -15,6 +13,7 @@ class ProfilePage(BasePage):
     def open_profile_page(self):
         self.driver.get(self.PROFILE_URL)
         self.wait_until_page_is_loaded()
+        self.find_element(self.FAVOURITE_TAB)
 
     def get_first_article_title(self):
         print(self.get_text(self.FIRST_ARTICLE_TITLE))
@@ -22,10 +21,11 @@ class ProfilePage(BasePage):
 
     def open_favourite_tab(self):
         self.click(self.FAVOURITE_TAB)
+        self.find_element(self.FAVOURITE_TAB)
         self.wait_until_page_is_loaded()
 
     def click_on_hearts_icon(self, heart_icons):
-        time.sleep(5)
+        self.find_element(self.HEART_ICON)
         print(f"Number of heart icons: {len(heart_icons)}")  # print length of heart_icons list
         for heart_icon in heart_icons:
             try:
