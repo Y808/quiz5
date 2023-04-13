@@ -51,7 +51,7 @@ def test_blank_password(init_driver):
     assert signup_page.get_password_error_text() == strings.blank_password
 
 
-def test_successful_signup(init_driver, read_login_users):
+def test_successful_signup(init_driver):
     signup_page = SignupPage(init_driver)
     home_page = HomePage(init_driver)
     signup_page.open_signup_page()
@@ -62,5 +62,5 @@ def test_successful_signup(init_driver, read_login_users):
     password = random_cred['password']
     signup_page.signup(username, email, password)
 
-    assert random_cred['username'] == home_page.get_workspace_text()
-    assert home_page.get_your_feed_tab().is_enabled()
+    assert random_cred['username'] == home_page.get_workspace_text(), "username on signup is not the same as on workspace"
+    assert home_page.get_your_feed_tab().is_enabled(), "YOUR_FEED_TAB is not enabled"

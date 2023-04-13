@@ -16,8 +16,8 @@ def test_change_password(init_driver):
     settings_page.open_settings_page()
     password = "87654321"
     settings_page.change_password(password)
-    assert login_users.user1Username == home_page.get_workspace_text()
-    assert home_page.get_your_feed_tab().is_enabled()
+    assert login_users.user1Username == home_page.get_workspace_text(), "username is not match"
+    assert home_page.get_your_feed_tab().is_enabled(), "your feed tab is not enabled"
     settings_page.open_settings_page()
     settings_page.logout()
     login_page.open_login_page()
@@ -25,8 +25,8 @@ def test_change_password(init_driver):
     settings_page.open_settings_page()
     password = "12345678"
     settings_page.change_password(password)
-    assert login_users.user1Username == home_page.get_workspace_text()
-    assert home_page.get_your_feed_tab().is_enabled()
+    assert login_users.user1Username == home_page.get_workspace_text(), "username is not match after password changed and login again"
+    assert home_page.get_your_feed_tab().is_enabled(), "your feed tab is not enabled"
 
 
 def test_change_bio(init_driver):
@@ -41,6 +41,6 @@ def test_change_bio(init_driver):
     bio_before = settings_page.get_bio_text()
     bio = generate_random_string()
     settings_page.change_bio(bio)
-    assert login_users.user1Username == home_page.get_workspace_text()
-    assert home_page.get_your_feed_tab().is_enabled()
-    assert bio_before != bio
+    assert login_users.user1Username == home_page.get_workspace_text(), "username is not match"
+    assert home_page.get_your_feed_tab().is_enabled(), "your feed tab is not enabled"
+    assert bio_before != bio, "bio same as were before changes"

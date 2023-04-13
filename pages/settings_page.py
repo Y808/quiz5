@@ -22,6 +22,7 @@ class SettingsPage(BasePage):
     def change_password(self, password):
         self.fill_input(self.PASSWORD_FIELD, password)
         self.find_element(self.PASSWORD_FIELD)
+        self.scroll_to_element(self.SUBMIT_BUTTON)
         self.click(self.SUBMIT_BUTTON)
         self.find_element(HomePage.SETTINGS_NAV_ITEM)
         self.wait_until_page_is_loaded()

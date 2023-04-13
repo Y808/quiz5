@@ -23,6 +23,12 @@ class LoginPage(BasePage):
         self.find_element(HomePage.SETTINGS_NAV_ITEM)
         self.wait_until_page_is_loaded()
 
+    def login_with_errors(self, email, password):
+        self.fill_input(self.EMAIL_FIELD, email)
+        self.fill_input(self.PASSWORD_FIELD, password)
+        self.click(self.LOGIN_BUTTON)
+        self.wait_until_page_is_loaded()
+
     def get_email_error_text(self):
         print(self.get_text(self.EMAIL_ERROR))
         return self.get_text(self.EMAIL_ERROR)
