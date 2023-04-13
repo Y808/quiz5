@@ -61,3 +61,7 @@ class BasePage:
         element = self.wait.until(EC.presence_of_element_located(locator))
         initial_classes = element.get_attribute('class').split()
         self.wait.until(lambda driver: element.get_attribute('class').split() != initial_classes)
+
+    def reload_page(self):
+        self.driver.refresh()
+        self.wait_until_page_is_loaded()

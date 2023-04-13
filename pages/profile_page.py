@@ -8,6 +8,7 @@ class ProfilePage(BasePage):
     FAVOURITE_TAB = (By.XPATH, "//a[contains(text(),'Favor')]")
     FIRST_ARTICLE_TITLE = (By.XPATH, "//h1")
     HEART_ICON = (By.CSS_SELECTOR, "div.pull-xs-right")
+    MARKED_HEART = (By.XPATH, "//button[@class= 'btn btn-sm btn-primary']")
     PROFILE_URL = configs.base_url + '#/@Anna%20MARIA?_k=r5761m'
 
     def open_profile_page(self):
@@ -35,4 +36,5 @@ class ProfilePage(BasePage):
 
     def click_on_heart_icon(self):
         self.click(self.HEART_ICON)
+        self.wait_until_class_changes(self.MARKED_HEART)
         self.wait_until_page_is_loaded()

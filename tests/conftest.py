@@ -1,5 +1,3 @@
-import json
-
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -7,7 +5,9 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.chrome import ChromeType
-import xml.etree.ElementTree as ET
+from tests.data.login_users import user1Email, user1Password
+from pages.home_page import HomePage
+from pages.login_page import LoginPage
 
 
 @pytest.fixture
@@ -46,9 +46,18 @@ def pytest_addoption(parser):
     )
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture
 def read_login_users():
-    with open("data/loginUsers.json") as f:
-        login_users = json.load(f)
-    return login_users
+    return {"user1Email": user1Email, "user1Password": user1Password}
 
+
+@pytest.fixture
+def main_user_login(init_driver):
+    login_page = LoginPage(init_driver)
+    email = user1Email
+    password = user1Password
+    login_page.open_login_page()
+    login_page.login(email, password)
+    home_page = HomePage(init_driver)
+    home_page.wait_until_page_is_loaded()
+    yield email, password
