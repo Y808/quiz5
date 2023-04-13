@@ -2,16 +2,18 @@ import pytest
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
 from pages.settings_page import SettingsPage
-from tests.data import strings
+from tests.data import strings, login_users
 
 
 @pytest.fixture(scope="function")
-def login_user(init_driver, read_login_users):
+def login_user(init_driver):
     login_page = LoginPage(init_driver)
-    email = read_login_users["validUser1"]["email"]
-    password = read_login_users["validUser1"]["password"]
+    email = login_users.user1Email
+    password = login_users.user1Password
     login_page.open_login_page()
     login_page.login(email, password)
+    home_page = HomePage(init_driver)
+    home_page.wait_until_page_is_loaded()
     yield email, password
 
 
