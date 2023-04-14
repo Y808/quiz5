@@ -1,3 +1,5 @@
+from selenium.common import NoSuchElementException
+
 import configs
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
@@ -38,3 +40,10 @@ class ProfilePage(BasePage):
         self.click(self.HEART_ICON)
         self.wait_until_class_changes(self.MARKED_HEART)
         self.wait_until_page_is_loaded()
+
+    def is_heart_icon_present(self):
+        try:
+            self.find_element(self.HEART_ICON)
+            return True
+        except NoSuchElementException:
+            return False
