@@ -1,4 +1,4 @@
-from selenium.common import NoSuchElementException
+from selenium.common import NoSuchElementException, TimeoutException
 
 import configs
 from pages.base_page import BasePage
@@ -45,5 +45,5 @@ class ProfilePage(BasePage):
         try:
             self.find_element(self.HEART_ICON)
             return True
-        except NoSuchElementException:
+        except TimeoutException:
             return False
