@@ -7,19 +7,24 @@ from pages.login_page import LoginPage
 
 @pytest.fixture
 def new_user():
-
     random_cred = generate_random_credentials()
+    email = random_cred["email"]
+    username = random_cred["username"]
+    password = random_cred["email"]
     user = {
-        'email': random_cred['email'],
-        'password': random_cred['password'],
-        'username': random_cred['username']
+        "user": {
+            "email": email,
+            "username": username,
+            "password": password
+        }
     }
-    response = requests.post('https://api.realworld.io/api/users', json=user)
-    assert response.status_code == 200, f"Failed to sign up user with API. Response code: {response.status_code}"
+    headers = {"Content-Type": "application/json"}
+    response = requests.post("https://api.realworld.io/api/users", json=user, headers=headers)
 
-
+    assert response.status_code == 200, f"Failed to sign up user with API. Response code: {response.status_code}. Response text: {response.text}"
+    print(response.text)
+    print(response.status_code)
     yield random_cred
-
 
 def test_login_with_api(init_driver, new_user):
 
