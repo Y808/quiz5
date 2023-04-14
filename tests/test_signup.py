@@ -64,3 +64,4 @@ def test_successful_signup(init_driver):
 
     assert random_cred['username'] == home_page.get_workspace_text(), "username on signup is not the same as on workspace"
     assert home_page.get_your_feed_tab().is_enabled(), "YOUR_FEED_TAB is not enabled"
+
