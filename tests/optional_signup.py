@@ -24,15 +24,15 @@ def new_user():
     assert response.status_code == 200, f"Failed to sign up user with API. Response code: {response.status_code}. Response text: {response.text}"
     print(response.text)
     print(response.status_code)
-    yield random_cred
+    yield email, password, random_cred
 
 def test_login_with_api(init_driver, new_user):
 
     login_page = LoginPage(init_driver)
     home_page = HomePage(init_driver)
     login_page.open_login_page()
-    login_page.login(new_user['email'], new_user['password'])
+    login_page.login(new_user[0], new_user[1])
     home_page.wait_until_page_is_loaded()
 
-    assert new_user['username'] == home_page.get_workspace_text(), "username on signup is not the same as on workspace"
+    assert new_user[2]['username'] == home_page.get_workspace_text(), "username on signup is not the same as on workspace"
     assert home_page.get_your_feed_tab().is_enabled(), "YOUR_FEED_TAB is not enabled"
